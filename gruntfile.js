@@ -117,6 +117,14 @@ module.exports = function (grunt) {
 			}
 		},
 
+		bower_main: {
+			copy: {
+				options: {
+					dest: 'build/bower_components'
+				}
+			}
+		},
+
 		connect: {
 			'static': {
 				options: {
@@ -152,6 +160,7 @@ module.exports = function (grunt) {
 		'includeSource',
 		'wiredep',
 		'preprocess',
+		'bower_main',
 	]);
 
 	grunt.registerTask('dev', [
