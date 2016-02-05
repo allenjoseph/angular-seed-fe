@@ -66,7 +66,7 @@ module.exports = function (grunt) {
 		wiredep: {
 			index: {
 				src: ['<%= prj.build %>/index.html'],
-				//ignorePath:  /\.\.\//
+				ignorePath:  /\.\.\//
 			}
 		},
 
@@ -117,6 +117,16 @@ module.exports = function (grunt) {
 			}
 		},
 
+		connect: {
+			'static': {
+				options: {
+					hostname: 'localhost',
+					port: 3000,
+					base: '<%= prj.build %>'
+				}
+			}
+		},
+
 		watch: {
 			options: {
 				livereload: true
@@ -147,6 +157,7 @@ module.exports = function (grunt) {
 	grunt.registerTask('dev', [
 		'openport:watch.options.livereload:35729',
 		'build',
+		'connect',
 		'watch',
 	]);
 };
