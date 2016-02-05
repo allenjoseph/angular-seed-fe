@@ -30,7 +30,13 @@
 				parent: 'body.layout',
 				url: '*path',
 				views: {
-					'view@body': { templateUrl: 'home/search.html' }
+					'@body': {
+						controller: 'Searcher as searcher',
+						templateUrl: 'home/search.html'
+					},
+					'results@home': {
+						templateUrl: 'home/results.html'
+					}
 				}
 			});
 	}

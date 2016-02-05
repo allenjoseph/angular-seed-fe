@@ -1,0 +1,16 @@
+<div class="row">
+	<div class="col-sm-12">
+		<h4 class="text-center">Resultados</h4>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-3 col-md-4 col-sm-6" ng-repeat="item in searcher.list | filter : searcher.query">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<header>
+					<h3 class="text-center">{{item}}</h3>
+				</header>
+			</div>
+		</div>
+	</div>
+</div>
