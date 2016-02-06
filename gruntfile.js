@@ -1,4 +1,5 @@
 var matchdep = require('matchdep');
+var LIVERELOAD_PORT = 35729;
 
 module.exports = function (grunt) {
 	'use strict';
@@ -73,7 +74,8 @@ module.exports = function (grunt) {
 		preprocess : {
 			options: {
 				context : {
-					DEBUG: true
+					debug: true,
+					livereloadPort: LIVERELOAD_PORT
 				}
 			},
 			index: {
@@ -137,7 +139,7 @@ module.exports = function (grunt) {
 
 		watch: {
 			options: {
-				livereload: true
+				livereload: LIVERELOAD_PORT
 			},
 			scripts: {
 				files: ['<%= prj.src.app %>/**/*.js'],
@@ -164,7 +166,7 @@ module.exports = function (grunt) {
 	]);
 
 	grunt.registerTask('dev', [
-		'openport:watch.options.livereload:35729',
+		'openport:watch.options.livereload:'+LIVERELOAD_PORT,
 		'build',
 		'connect',
 		'watch',
