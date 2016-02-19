@@ -97,6 +97,17 @@ module.exports = function (grunt) {
 			}
 		},
 
+		nggettext_extract: {
+			pot: {
+				files: {
+					'<%= prj.src.i18n %>/template.pot': [
+						'<%= prj.src.app %>/**/*.html',
+						'<%= prj.src.app %>/**/*.js'
+					]
+				}
+			}
+		},
+
 		nggettext_compile: {
 			all: {
 				src: ['<%= prj.src.i18n %>/*.po'],

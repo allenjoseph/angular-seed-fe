@@ -1,5 +1,21 @@
 <div class="row">
 	<div class="col-sm-12">
-		<h6 class="text-center">Angular Seed FE - 2016</h6>
-	</div>
+		<div class="dropup btn-group pull-right" ng-class="{open: langIsOpen}">
+			<a href="#" class="btn btn-default btn-sm">
+				<span ng-show="currentLanguage === 'es'" translate>Español</span>
+				<span ng-show="currentLanguage === 'en'" translate>Inglés</span>
+			</a>
+			<a href="#" class="btn btn-default btn-sm dropdown-toggle" ng-click="langIsOpen = !langIsOpen" aria-expanded="true">
+				<span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu dropdown-menu-right">
+				<li ng-show="currentLanguage !== 'es'">
+					<a href="#" ng-click="setLanguage('es'); langIsOpen = !langIsOpen" translate>Español</a>
+				</li>
+				<li ng-show="currentLanguage !== 'en'">
+					<a href="#" ng-click="setLanguage('en'); langIsOpen = !langIsOpen" translate>Inglés</a>
+				</li>
+			</ul>
+		</div>
+		<h6 class="text-center" translate>Angular Seed FE - 2016</h6>
 </div>

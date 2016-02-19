@@ -1,0 +1,45 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.6\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: client/app/home/search.html:6
+msgid "¿Que deseas buscar?"
+msgstr "What do you want to search?"
+
+#: client/app/layout/header.html:4
+msgid "Angular Seed FE"
+msgstr "Angular Seed FE"
+
+#: client/app/layout/footer.html:20
+msgid "Angular Seed FE - 2016"
+msgstr "Angular Seed FE - 2016"
+
+#: client/app/home/search.html:3
+msgid "Buscador"
+msgstr "Searcher"
+
+#: client/app/layout/footer.html:13 client/app/layout/footer.html:5
+msgid "Español"
+msgstr "Spanish"
+
+#: client/app/layout/body.html:4
+msgid "Hola mundo"
+msgstr "Hello world"
+
+#: client/app/layout/footer.html:16 client/app/layout/footer.html:6
+msgid "Inglés"
+msgstr "English"
+
+#: client/app/home/results.html:3
+msgid "Resultados"
+msgstr "Results"

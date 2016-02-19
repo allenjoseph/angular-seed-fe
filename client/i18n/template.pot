@@ -1,0 +1,39 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+
+#: client/app/home/search.html:6
+msgid "¿Que deseas buscar?"
+msgstr ""
+
+#: client/app/layout/header.html:4
+msgid "Angular Seed FE"
+msgstr ""
+
+#: client/app/layout/footer.html:20
+msgid "Angular Seed FE - 2016"
+msgstr ""
+
+#: client/app/home/search.html:3
+msgid "Buscador"
+msgstr ""
+
+#: client/app/layout/footer.html:13
+#: client/app/layout/footer.html:5
+msgid "Español"
+msgstr ""
+
+#: client/app/layout/body.html:4
+msgid "Hola mundo"
+msgstr ""
+
+#: client/app/layout/footer.html:16
+#: client/app/layout/footer.html:6
+msgid "Inglés"
+msgstr ""
+
+#: client/app/home/results.html:3
+msgid "Resultados"
+msgstr ""
