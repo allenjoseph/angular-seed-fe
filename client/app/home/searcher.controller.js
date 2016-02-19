@@ -1,11 +1,11 @@
-(function(){
+(function() {
 	'use strict';
 
 	angular
 		.module('app')
 		.controller('Searcher', Searcher);
 
-	function Searcher(){
+	function Searcher() {
 		var vm = this;
 
 		vm.query = '';

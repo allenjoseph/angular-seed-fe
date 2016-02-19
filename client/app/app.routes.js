@@ -1,4 +1,4 @@
-(function(){
+(function() {
 	'use strict';
 
 	angular
@@ -9,7 +9,7 @@
 
 	config.$inject = ['$stateProvider', '$urlRouterProvider'];
 
-	function config($stateProvider, $urlRouterProvider){
+	function config($stateProvider, $urlRouterProvider) {
 
 		$urlRouterProvider
 			.otherwise('/');
@@ -22,8 +22,8 @@
 			.state('body.layout', {
 				abstract: true,
 				views: {
-					'header@body': { templateUrl: 'layout/header.html' },
-					'footer@body': { templateUrl: 'layout/footer.html' }
+					'header@body': {templateUrl: 'layout/header.html'},
+					'footer@body': {templateUrl: 'layout/footer.html'}
 				}
 			})
 			.state('home', {

@@ -137,13 +137,23 @@ module.exports = function (grunt) {
 			}
 		},
 
+		jscs: {
+			src: '<%= prj.src.app %>/**/*.js',
+			options: {
+				config: ".jscsrc",
+				esnext: false, // If you use ES6
+				verbose: true, // If you need output with rule names
+				fix: false // Autofix code style violations when possible.
+			}
+		},
+
 		watch: {
 			options: {
 				livereload: LIVERELOAD_PORT
 			},
 			scripts: {
 				files: ['<%= prj.src.app %>/**/*.js'],
-				tasks: ['jshint:all', 'copy:js']
+				tasks: ['jshint:all', 'jscs', 'copy:js']
 			},
 			partials: {
 				files: ['<%= prj.src.app %>/**/*.html'],
@@ -155,6 +165,7 @@ module.exports = function (grunt) {
 	grunt.registerTask('build', [
 		'clean',
 		'jshint',
+		'jscs',
 		'nggettext_compile',
 		'html2js',
 		'less',
