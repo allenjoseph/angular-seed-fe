@@ -8,9 +8,12 @@ module.exports = function (grunt) {
 
 	grunt.initConfig({
 
+		pkg: grunt.file.readJSON('package.json'),
+
 		prj:{
 			name: 'angular-seed-fe',
 			build: 'build',
+			release: 'release',
 			src: {
 				app: 'client/app',
 				styles: 'client/styles',
@@ -19,13 +22,15 @@ module.exports = function (grunt) {
 				build: {
 					js: '<%= prj.build %>/app',
 					css: '<%= prj.build %>/styles',
-					assets: '<%= prj.build %>/assets'
+					assets: '<%= prj.build %>/assets',
+					vendor: '<%= prj.build %>/bower_components'
 				}
 			}
 		},
 
 		clean: {
-			build: '<%= prj.build %>'
+			build: '<%= prj.build %>',
+			release: '<%= prj.release %>',
 		},
 
 		copy: {
@@ -40,6 +45,13 @@ module.exports = function (grunt) {
 				cwd: '<%= prj.src.styles %>',
 				src: ['**/*.css'],
 				dest: '<%= prj.src.build.css %>'
+			},
+			fonts_release: {
+				expand: true,
+				cwd: '<%= prj.build %>',
+				src: ['**/*.eot','**/*.svg','**/*.ttf','**/*.woff','**/*.woff2'],
+				dest: '<%= prj.release %>/css',
+				flatten: true
 			}
 		},
 
@@ -132,7 +144,7 @@ module.exports = function (grunt) {
 		bower_main: {
 			copy: {
 				options: {
-					dest: '<%= prj.build %>/bower_components'
+					dest: '<%= prj.src.build.vendor %>'
 				}
 			}
 		},
@@ -169,6 +181,37 @@ module.exports = function (grunt) {
 				files: ['<%= prj.src.app %>/**/*.html'],
 				tasks: ['html2js']
 			},
+		},
+
+		cssmin: {
+			css: {
+				files: [{
+					src: [
+						'<%= prj.build %>/**/*.css',
+						'!*.min.css'
+					],
+					dest: '<%= prj.release %>/css/<%= pkg.name %>-<%= pkg.version %>',
+					ext: '.min.css'
+				}]
+			}
+		},
+
+		uglify: {
+			options: {
+				mangle: {
+					except: ['angular']
+				}
+			},
+			js: {
+				files: [{
+					src: [
+						'<%= prj.src.build.vendor %>/**/*.js',
+						'<%= prj.src.build.js %>/*.js',
+						'<%= prj.src.build.js %>/**/*.js'
+					],
+					dest: '<%= prj.release %>/<%= pkg.name %>-<%= pkg.version %>.min.js'
+				}]
+			}
 		}
 	});
 
@@ -184,6 +227,13 @@ module.exports = function (grunt) {
 		'wiredep',
 		'preprocess',
 		'bower_main',
+	]);
+
+	grunt.registerTask('release', [
+		'build',
+		'cssmin',
+		'copy:fonts_release',
+		'uglify'
 	]);
 
 	grunt.registerTask('dev', [
