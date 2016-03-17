@@ -11,7 +11,6 @@ module.exports = function (grunt) {
 		prj:{
 			name: 'angular-seed-fe',
 			build: 'build',
-			vendor: 'bower_components',
 			src: {
 				app: 'client/app',
 				styles: 'client/styles',
@@ -133,7 +132,7 @@ module.exports = function (grunt) {
 		bower_main: {
 			copy: {
 				options: {
-					dest: 'build/bower_components'
+					dest: '<%= prj.build %>/bower_components'
 				}
 			}
 		},
