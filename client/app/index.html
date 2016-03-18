@@ -10,19 +10,21 @@
 
 		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 
-		<!-- bower:css -->
-		<!-- endbower -->
-
-		<!-- include: "type": "css", "files": "styles/**/*.css" -->
-
-		<!-- @ifdef debug -->
-		<script src="//localhost:<!-- @echo livereloadPort -->/livereload.js"></script>
+		<!-- @ifdef release -->
+		<!-- include: "type": "css", "basePath": "release", "files": "*.css" -->
+		<!-- include: "type": "js", "basePath": "release", "files": "*.js" -->
 		<!-- @endif -->
 
+		<!-- @ifdef livereloadPort -->
+		<!-- bower:css -->
+		<!-- endbower -->
 		<!-- bower:js -->
 		<!-- endbower -->
 
-		<!-- include: "type": "js", "ordering": "top-down", "files": "app/**/*.js" -->
+		<!-- include: "type": "css", "basePath": "build", "files": "styles/**/*.css" -->
+		<!-- include: "type": "js", "basePath": "build", "ordering": "top-down", "files": "app/**/*.js" -->
+		<script src="//localhost:<!-- @echo livereloadPort -->/livereload.js"></script>
+		<!-- @endif -->
 	</head>
 	<body ng-app="app">
 		<div class="container" ui-view>

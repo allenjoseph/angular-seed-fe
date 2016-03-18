@@ -50,7 +50,7 @@ module.exports = function (grunt) {
 				expand: true,
 				cwd: '<%= prj.build %>',
 				src: ['**/*.eot','**/*.svg','**/*.ttf','**/*.woff','**/*.woff2'],
-				dest: '<%= prj.release %>/css',
+				dest: '<%= prj.release %>/fonts',
 				flatten: true
 			}
 		},
@@ -66,12 +66,13 @@ module.exports = function (grunt) {
 		},
 
 		includeSource: {
-			options: {
-				basePath: '<%= prj.build %>'
-			},
-			build: {
+			dev: {
 				src: ['<%= prj.src.app %>/index.html'],
 				dest: '<%= prj.build %>/index.html'
+			},
+			release: {
+				src: ['<%= prj.release %>/index.html'],
+				dest: '<%= prj.release %>/index.html'
 			}
 		},
 
@@ -83,15 +84,24 @@ module.exports = function (grunt) {
 		},
 
 		preprocess : {
-			options: {
-				context : {
-					debug: true,
-					livereloadPort: LIVERELOAD_PORT
-				}
-			},
-			index: {
+			dev: {
+				options: {
+					context : {
+						debug: true,
+						livereloadPort: LIVERELOAD_PORT
+					}
+				},
 				src: ['<%= prj.build %>/index.html'],
 				dest: '<%= prj.build %>/index.html'
+			},
+			release: {
+				options: {
+					context : {
+						release: true
+					}
+				},
+				src: ['<%= prj.src.app %>/index.html'],
+				dest: '<%= prj.release %>/index.html'
 			}
 		},
 
@@ -150,11 +160,18 @@ module.exports = function (grunt) {
 		},
 
 		connect: {
-			'static': {
+			dev: {
 				options: {
 					hostname: 'localhost',
 					port: 3000,
 					base: '<%= prj.build %>'
+				}
+			},
+			release: {
+				options: {
+					hostname: 'localhost',
+					port: 3000,
+					base: '<%= prj.release %>'
 				}
 			}
 		},
@@ -190,21 +207,19 @@ module.exports = function (grunt) {
 						'<%= prj.build %>/**/*.css',
 						'!*.min.css'
 					],
-					dest: '<%= prj.release %>/css/<%= pkg.name %>-<%= pkg.version %>',
-					ext: '.min.css'
+					dest: '<%= prj.release %>/<%= pkg.name %>-<%= pkg.version %>.min.css',
 				}]
 			}
 		},
 
 		uglify: {
 			options: {
-				mangle: {
-					except: ['angular']
-				}
+				mangle: false
 			},
 			js: {
 				files: [{
 					src: [
+						'<%= prj.src.build.vendor %>/angular/*.js',
 						'<%= prj.src.build.vendor %>/**/*.js',
 						'<%= prj.src.build.js %>/*.js',
 						'<%= prj.src.build.js %>/**/*.js'
@@ -223,9 +238,9 @@ module.exports = function (grunt) {
 		'html2js',
 		'less',
 		'copy',
-		'includeSource',
+		'includeSource:dev',
 		'wiredep',
-		'preprocess',
+		'preprocess:dev',
 		'bower_main',
 	]);
 
@@ -233,13 +248,15 @@ module.exports = function (grunt) {
 		'build',
 		'cssmin',
 		'copy:fonts_release',
-		'uglify'
+		'uglify',
+		'preprocess:release',
+		'includeSource:release',
 	]);
 
 	grunt.registerTask('dev', [
 		'openport:watch.options.livereload:'+LIVERELOAD_PORT,
 		'build',
-		'connect',
+		'connect:dev',
 		'watch',
 	]);
 };
